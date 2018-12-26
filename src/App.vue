@@ -1,14 +1,17 @@
 <template lang="pug">
   div.container
     tree
+    panel
 </template>
 
 <script>
 import Tree from './components/Tree'
+import Panel from './components/Panel'
 
 export default {
   components: {
-    Tree
+    Tree,
+    Panel
   }
 }
 </script>
