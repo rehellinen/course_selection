@@ -13,10 +13,12 @@
             div.block.green.small
               p {{second.name}}
               p.credit {{second.credit}}
-
+            div.block.green.small
+              p 已修
+              p.credit {{getTotalCredits(secondIndex)}}
             div.third-container
               div(v-for="item in getThird(secondIndex)")
-                div.block.red.small
+                div.block.red.small(:class="{black: item.credit === 0}")
                   p {{item.name}}
                   p.credit {{item.credit}}
 
@@ -50,6 +52,14 @@ export default {
         }
       })
       return res
+    },
+    getTotalCredits (index) {
+      const courses = this.getThird(index)
+      let credits = 0
+      courses.forEach(item => {
+        credits += item.credit
+      })
+      return credits
     }
   }
 }
