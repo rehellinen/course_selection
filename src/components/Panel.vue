@@ -29,7 +29,7 @@ export default {
   @import "../assets/sass/base"
 
   .panel-container
-    width: 80%
+    width: 90%
     background-color: white
     margin-top: 30px
     display: flex

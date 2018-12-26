@@ -13,14 +13,14 @@
             div.block.green.small
               p {{second.name}}
               p.credit {{second.credit}}
-            div.block.green.small
-              p 已修
-              p.credit {{getTotalCredits(secondIndex)}}
+            div.block.green.small(:class="{black: second.credit - getTotalCredits(second.id) > 0}")
+              p 未修
+              p.credit {{second.credit - getTotalCredits(second.id)}}
             div.third-container
-              div(v-for="item in getThird(secondIndex)")
-                div.block.red.small(:class="{black: item.credit === 0}")
+              div(v-for="item in getThird(second.id)")
+                div.block.red.small(:class="{black: item.credit === 0 || (item.need && item.need > item.credit)}")
                   p {{item.name}}
-                  p.credit {{item.credit}}
+                  p.credit {{item.credit}}{{item.need ? ' / '+item.need : '' }}
 
 </template>
 
@@ -44,10 +44,10 @@ export default {
       })
       return res
     },
-    getThird (index) {
+    getThird (id) {
       let res = []
       this.third.forEach(item => {
-        if (item.gIndex === index) {
+        if (item.gid === id) {
           res = item.courses
         }
       })
@@ -69,7 +69,7 @@ export default {
   @import "../assets/sass/base"
   @import "../assets/sass/block"
   .tree-container
-    width: 80%
+    width: 90%
     display: flex
     flex-direction: column
     align-items: center
