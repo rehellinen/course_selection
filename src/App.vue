@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.container
     tree
 </template>
 
@@ -15,4 +15,11 @@ export default {
 
 <style>
   @import "./assets/css/reset.css";
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f3f3f3;
+    min-height: 100vh;
+  }
 </style>
